@@ -19,6 +19,14 @@ public class LegsMovement : MonoBehaviour
     public bool IsMoving { get; set; }
     public bool IsRunning { get; private set; }
 
+    public List<Leg> Legs
+    {
+        get
+        {
+            return legs;
+        }
+    }
+
     void Awake()
     {
         animator = transform.GetComponent<Animator>();

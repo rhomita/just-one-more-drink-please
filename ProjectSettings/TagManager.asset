@@ -16,8 +16,8 @@ TagManager:
   - Ground
   - Armature
   - Props
-  - CombatTarget
-  - 
+  - Hitbox
+  - Weapon
   - 
   - 
   - 
