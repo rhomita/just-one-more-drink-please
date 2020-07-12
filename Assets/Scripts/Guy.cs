@@ -7,8 +7,15 @@ public class Guy : MonoBehaviour
     [SerializeField] private float initHealth = 100f;
 
     private GuyRagdoll ragdoll;
+    private float secondsToDestroy = 5f;
     
-    [HideInInspector] public float Health;   
+    public float Health { get; private set; }
+    
+    public delegate void OnKill();
+    public OnKill onKill;
+    
+    public delegate void OnTakeDamage(float currentHealth);
+    public OnTakeDamage onTakeDamage;
     
     public bool IsDead { get; private set; }
     
@@ -21,17 +28,32 @@ public class Guy : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.parent.name +  " - health: " + Health);
+        if (IsDead) return;
+        
         if (Health <= 0 && !IsDead)
         {
-            IsDead = true;
             Kill();
         }
     }
 
     private void Kill()
     {
+        if (IsDead) return;
+        IsDead = true;
         ragdoll.Activate();
-        Debug.Log("Killed");
+        StartCoroutine(DestroyAfter(secondsToDestroy));
+        onKill?.Invoke();
+    }
+
+    private IEnumerator DestroyAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(transform.parent.gameObject);
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        Health -= _damage;
+        onTakeDamage?.Invoke(Health);
     }
 }

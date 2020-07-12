@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Guy guy;
+    private Enemy enemy;
     private EnemyCombat combat;
     private NavMeshAgent agent;
     private Transform player;
@@ -15,17 +15,22 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = transform.GetComponent<NavMeshAgent>();
         combat = transform.GetComponent<EnemyCombat>();
+        enemy = transform.GetComponent<Enemy>();
     }
     
     void Start()
     {
         player = GameManager.instance.Player;
         playerGuy = GameManager.instance.PlayerGuy;
+
+        enemy.Guy.onKill += () =>
+        {
+            agent.isStopped = true;
+        };
     }
 
     void Update()
     {
-        if (guy.IsDead) return;
         if (playerGuy.IsDead) return;
 
         agent.SetDestination(player.position);
@@ -36,6 +41,8 @@ public class EnemyMovement : MonoBehaviour
             combat.Attack();
         }
     }
+
+    
     
     private void FaceTarget()
     {

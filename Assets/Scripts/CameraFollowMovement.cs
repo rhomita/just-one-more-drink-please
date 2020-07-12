@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class CameraFollowMovement : MonoBehaviour
 {
-    [SerializeField] private Vector3 offset;
     [SerializeField] private Vector3 rotation;
-    [SerializeField] private Transform player;
-
+    
+    private Transform player;
+    
+    private float mouseSensitivity = 50f;
     private float zoom;
+    private float xRotation = 0f;
+    
+    
     void Start()
     {
         transform.rotation = Quaternion.Euler(rotation);
+        player = GameManager.instance.Player;
     }
 
     void Update()
     {
-        zoom += Input.mouseScrollDelta.y / 2;
-        zoom = Mathf.Clamp(zoom, -2, 2);
+        if (Input.GetMouseButton(2))
+        {
+            xRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(rotation.x, xRotation, 0);
+        }
+
+        zoom -= Input.mouseScrollDelta.y / 2;
+        zoom = Mathf.Clamp(zoom, 2, 5);
         
+        Vector3 position = player.position - transform.forward * zoom;
+        transform.position = Vector3.Slerp(position, transform.position, Time.deltaTime * 1);
         
-        Vector3 newPosition = player.position + offset + transform.forward * zoom;
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 10f);
+        return;
     }
 }

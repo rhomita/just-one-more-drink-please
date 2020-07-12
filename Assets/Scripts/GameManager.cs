@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Guy playerGuy;
+    [SerializeField] private Transform cam;
     
     public Transform Player {
         get
@@ -19,6 +20,14 @@ public class GameManager : MonoBehaviour
         get
         {
             return playerGuy;
+        }
+    }
+
+    public Transform Camera
+    {
+        get
+        {
+            return cam;
         }
     }
     

@@ -35,6 +35,6 @@ public class Hitbox : MonoBehaviour
         if (guys.Length == 0 || guys[0] == Guy) return;
         
         // TODO maybe knock out?
-        Guy.Health -= other.impulse.magnitude / hitMagnitude;
+        Guy.TakeDamage(other.impulse.magnitude / hitMagnitude);
     }
 }
