@@ -6,6 +6,7 @@ public class CameraFollowMovement : MonoBehaviour
 {
     [SerializeField] private Vector3 rotation;
     
+    
     private Transform player;
     
     private float mouseSensitivity = 50f;
@@ -21,11 +22,13 @@ public class CameraFollowMovement : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return;
         if (Input.GetMouseButton(2))
         {
-            xRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(rotation.x, xRotation, 0);
+            xRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime; 
         }
+
+        transform.rotation = Quaternion.Euler(rotation.x, xRotation, 0);
 
         zoom -= Input.mouseScrollDelta.y / 2;
         zoom = Mathf.Clamp(zoom, 2, 5);

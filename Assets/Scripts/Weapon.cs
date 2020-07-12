@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private Rigidbody rb;
+    public bool IsGrabbed = false;
     
     void Awake()
     {
@@ -15,6 +16,7 @@ public class Weapon : MonoBehaviour
     
     public void Grab(Transform parent)
     {
+        IsGrabbed = true;
         rb.isKinematic = true;
         transform.parent = parent;
         transform.localRotation = quaternion.identity;
@@ -24,6 +26,7 @@ public class Weapon : MonoBehaviour
 
     public void Drop()
     {
+        IsGrabbed = false;
         transform.parent = null;
         rb.isKinematic = false;
     }

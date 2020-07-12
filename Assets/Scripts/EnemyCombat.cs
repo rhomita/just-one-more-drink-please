@@ -6,16 +6,16 @@ public class EnemyCombat : MonoBehaviour
 {
     [SerializeField] private List<CombatArm> arms;
     [SerializeField] private List<Weapon> initWeapons;
-
-    private Transform player;
-
+    
     private float attackCooldown = 0;
-    private static float ATTACK_COOLDOWN = 0.3f;
+    private static float ATTACK_COOLDOWN = 2f;
+    private bool isAttackCooldown = true;
+    
+    private float armCooldown = 0;
+    private static float ARM_COOLDOWN = 0.3f;
     
     void Start()
     {
-        player = GameManager.instance.Player;
-
         for (int i = 0; i < initWeapons.Count; i++)
         {
             arms[i].SetWeapon(initWeapons[i]);
@@ -24,21 +24,35 @@ public class EnemyCombat : MonoBehaviour
     
     void Update()
     {
-        if (attackCooldown > 0)
+        if (armCooldown > 0)
         {
-            attackCooldown -= Time.deltaTime;  
+            armCooldown -= Time.deltaTime;  
+        }
+
+        if (attackCooldown <= 0)
+        {
+            isAttackCooldown = !isAttackCooldown;
+            attackCooldown = ATTACK_COOLDOWN;
+        }
+        
+        if (attackCooldown > 0 && isAttackCooldown)
+        {
+            attackCooldown -= Time.deltaTime;
         }
     }
 
     public void Attack()
     {
-        if (attackCooldown > 0) return;
+        if (isAttackCooldown) return;
+        if (armCooldown > 0) return;
 
+        attackCooldown -= ARM_COOLDOWN;
+        
         foreach (CombatArm arm in arms)
         {
             if (arm.IsAttacking) continue;
             arm.Attack();
-            attackCooldown = ATTACK_COOLDOWN;
+            armCooldown = ARM_COOLDOWN;
             break;
         }
     }

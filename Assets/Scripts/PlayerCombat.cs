@@ -5,11 +5,19 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private List<CombatArm> arms;
-
     [SerializeField] private LayerMask weaponMask;
 
+    private Player player;
+    
     private float pickableRadius = 1f;
     private Weapon pickableWeapon = null;
+
+    void Start()
+    {
+        player = transform.GetComponent<Player>();
+        player.UI.InitHealth(player.Guy.Health);
+        player.Guy.onTakeDamage += player.UI.SetHealth;
+    }
     
     void Update()
     {
@@ -19,18 +27,18 @@ public class PlayerCombat : MonoBehaviour
 
     private void CheckWeaponPickups()
     {
-        pickableWeapon = null;
         Collider[] colliders = Physics.OverlapSphere(transform.position, pickableRadius, weaponMask);
         if (colliders.Length == 0) return;
         
         foreach (Collider collider in colliders)
         {
             Weapon weapon = collider.GetComponent<Weapon>();
-            if (weapon == null || collider.transform.parent != null) continue;
+            if (weapon == null || weapon.IsGrabbed) continue;
             pickableWeapon = weapon;
             // TODO: show some UI
-            break;
+            return;
         }
+        pickableWeapon = null;
     }
     
     private void CheckInput()

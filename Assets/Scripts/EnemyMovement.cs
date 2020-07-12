@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
     private Guy playerGuy;
-
+    
     void Awake()
     {
         agent = transform.GetComponent<NavMeshAgent>();

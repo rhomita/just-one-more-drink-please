@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
  
     private Transform cam;
     private CharacterController controller;
+    private Player player;
     
     // Jump
     private float groundDistance = 0.4f;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         controller = transform.GetComponent<CharacterController>();
+        player = transform.GetComponent<Player>();
     }
 
     void Start()
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
         cam = GameManager.instance.Camera;
         runningCenter = new Vector3(0, 0.1f, 0);
         crouchingCenter = new Vector3(0, 0.3f, 0);
+        
+        player.UI.InitStamina(MAX_ENERGY);
     }
     
     void Update()
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour
             energy += ENERGY_CHARGE_SPEED * Time.deltaTime;
             energy = Mathf.Clamp(energy, 0, MAX_ENERGY);
         }
+        player.UI.SetStamina(energy);
 
         isCrouching = !isRunning && Input.GetKey(KeyCode.C);
         

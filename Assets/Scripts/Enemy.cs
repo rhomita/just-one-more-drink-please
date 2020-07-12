@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 
     private bool idle = true;
 
+    private static int SCORE = 1000;
+
     public Guy Guy
     {
         get
@@ -50,6 +52,8 @@ public class Enemy : MonoBehaviour
     
     void OnKill()
     {
+        ScoreManager.instance.AddScore(SCORE);
+        ScoreManager.instance.AddMultiplier();
         healthBarUi.gameObject.SetActive(false);
         movement.enabled = false;
         combat.enabled = false;

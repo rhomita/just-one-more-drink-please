@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Guy playerGuy;
     [SerializeField] private Transform cam;
+    [SerializeField] private LostUI lostUI;
     
     public Transform Player {
         get
@@ -31,17 +32,22 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    #region singleton
     public static GameManager instance { get; private set; }
 
-    #region singleton
     void Awake()
     {
         instance = this;
     }
-
     #endregion
-    
-    
-    
+
+    void Start()
+    {
+        playerGuy.onKill += () =>
+        {
+            player.GetComponent<Player>().UI.Hide();
+            lostUI.Show();
+        };
+    }
     
 }

@@ -53,6 +53,10 @@ public class Guy : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
+        if (_damage > 5)
+        {
+            ScoreManager.instance.AddScore(10);
+        }
         Health -= _damage;
         onTakeDamage?.Invoke(Health);
     }

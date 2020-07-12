@@ -8,7 +8,10 @@ public class Hitbox : MonoBehaviour
 {
     [SerializeField] private Guy guy;
     private Rigidbody rb;
-
+    [SerializeField]
+    [Range(0.0f, 100.0f)]
+    public float defenceRate;
+    
     private float hitMagnitude = 4f;
 
     public Guy Guy
@@ -24,17 +27,14 @@ public class Hitbox : MonoBehaviour
         rb = transform.GetComponent<Rigidbody>();
     }
     
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision other)
     {
         Guy[] guys = other.transform.GetComponentsInParent<Guy>();
         if (guys.Length == 0 || guys[0] == Guy) return;
         
-        // TODO maybe knock out?
-        Guy.TakeDamage(other.impulse.magnitude / hitMagnitude);
+        float damage = other.impulse.magnitude / hitMagnitude;
+        damage = damage - (defenceRate * damage) / 100;
+        Guy.TakeDamage(damage);
     }
 }
