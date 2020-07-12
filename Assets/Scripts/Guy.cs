@@ -59,9 +59,15 @@ public class Guy : MonoBehaviour
     {
         if (_damage > 5)
         {
-            ScoreManager.instance.AddScore(10);
+            ScoreManager.instance.AddScore(10, false);
         }
         Health -= _damage;
+        onTakeDamage?.Invoke(Health);
+    }
+
+    public void ResetHealth()
+    {
+        Health = 100;
         onTakeDamage?.Invoke(Health);
     }
 }

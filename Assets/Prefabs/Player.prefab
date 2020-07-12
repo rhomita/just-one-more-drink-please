@@ -4800,7 +4800,7 @@ GameObject:
   - component: {fileID: 1457760573495941199}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4936,6 +4936,10 @@ PrefabInstance:
     - target: {fileID: 811989244, guid: af901effabacf9d44bb7ab55f7fae425, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 1.598038
+      objectReference: {fileID: 0}
+    - target: {fileID: 811989244, guid: af901effabacf9d44bb7ab55f7fae425, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00000035762787
       objectReference: {fileID: 0}
     - target: {fileID: 3159532856829451974, guid: af901effabacf9d44bb7ab55f7fae425,
         type: 3}

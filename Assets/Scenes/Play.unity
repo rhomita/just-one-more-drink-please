@@ -2319,7 +2319,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1129714
+  m_Name: pb_Mesh1441512
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3456,7 +3456,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1130314
+  m_Name: pb_Mesh1442118
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5354,6 +5354,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2023522880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &242172741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 242172742}
+  m_Layer: 0
+  m_Name: LifePickupPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &242172742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242172741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.416, y: 0, z: 5.436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243351732
 GameObject:
   m_ObjectHideFlags: 0
@@ -6904,11 +6934,6 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 1736551015}
-    - target: {fileID: 4726486127843275047, guid: 16e206f755e959b4f8b6beea69671f88,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.z
-      value: -0.00000035762787
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e206f755e959b4f8b6beea69671f88, type: 3}
 --- !u!1001 &324155375
@@ -15128,6 +15153,17 @@ PrefabInstance:
       propertyPath: pauseUI
       value: 
       objectReference: {fileID: 1494221346}
+    - target: {fileID: 3995792506899354126, guid: 287c9c1a0142b9143aa633e4680f07b1,
+        type: 3}
+      propertyPath: lifePickup
+      value: 
+      objectReference: {fileID: 3685879719151474291, guid: 7dcf1119bed96104bb2eb87433fc3b58,
+        type: 3}
+    - target: {fileID: 3995792506899354126, guid: 287c9c1a0142b9143aa633e4680f07b1,
+        type: 3}
+      propertyPath: lifePickupPoint
+      value: 
+      objectReference: {fileID: 242172742}
     - target: {fileID: 3995792506899354127, guid: 287c9c1a0142b9143aa633e4680f07b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27692,7 +27728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1130386
+  m_Name: pb_Mesh1442190
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -42726,7 +42762,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1128602
+  m_Name: pb_Mesh1440386
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -44502,7 +44538,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1130154
+  m_Name: pb_Mesh1441952
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

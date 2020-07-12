@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform cam;
     [SerializeField] private LostUI lostUI;
     [SerializeField] private GameObject pauseUI;
+    
+    [SerializeField] private Transform lifePickupPoint;
+    [SerializeField] private GameObject lifePickup;
 
     private PlayerUI playerUI;
     private Animator playerAnimator;
@@ -55,6 +58,10 @@ public class GameManager : MonoBehaviour
 
     public void ShowRound(int number)
     {
+        if (number % 2 == 0)
+        {
+            Instantiate(lifePickup, lifePickupPoint.position, Quaternion.identity);
+        }
         playerUI.ShowRound(number);
     }
     

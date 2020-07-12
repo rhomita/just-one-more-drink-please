@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public void Test()
+    void Start()
     {
-        Debug.Log("Test");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
-    
     public void Exit()
     {
         Application.Quit();

@@ -35,11 +35,14 @@ public class ScoreManager : MonoBehaviour
         multiplier++;
     }
     
-    public void AddScore(int _score)
+    public void AddScore(int _score, bool show = true)
     {
         int newScore = _score * multiplier;
         Score += newScore;
-        UI.ShowScore(newScore);
+        if (show)
+        {
+            UI.ShowScore(newScore);
+        }
         UI.SetScore(Score);
     }
     

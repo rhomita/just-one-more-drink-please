@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     
     // Running
     private static float MAX_ENERGY = 100f;
-    private static float ENERGY_CHARGE_SPEED = 3f;
+    private static float ENERGY_CHARGE_SPEED = 2.5f;
     private float energy = MAX_ENERGY;
     private bool isRunning = false;
     private bool isCrouching = false;
