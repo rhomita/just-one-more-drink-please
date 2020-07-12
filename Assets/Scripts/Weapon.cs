@@ -7,15 +7,22 @@ public class Weapon : MonoBehaviour
 {
     private Rigidbody rb;
     public bool IsGrabbed = false;
+
+    [SerializeField] private AudioClip grabClip;
+    [SerializeField] private AudioClip dropClip;
+    
+    private AudioSource audioSource;
     
     void Awake()
     {
+        audioSource = transform.GetComponent<AudioSource>();
         rb = transform.GetComponent<Rigidbody>();
         rb.isKinematic = false;
     }
     
     public void Grab(Transform parent)
     {
+        audioSource.PlayOneShot(grabClip);
         IsGrabbed = true;
         rb.isKinematic = true;
         transform.parent = parent;
@@ -29,5 +36,12 @@ public class Weapon : MonoBehaviour
         IsGrabbed = false;
         transform.parent = null;
         rb.isKinematic = false;
+        StartCoroutine(DropSound());
+    }
+
+    IEnumerator DropSound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        audioSource.PlayOneShot(dropClip);
     }
 }

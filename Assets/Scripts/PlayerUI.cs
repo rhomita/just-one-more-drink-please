@@ -15,7 +15,15 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Text multiplierText;
     [SerializeField] private Animator multiplierAnimator;
 
+    [SerializeField] private Text roundText;
+    
     private Coroutine multiplierCoroutine;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = transform.GetComponent<Animator>();
+    }
     
     public void InitHealth(float health)
     {
@@ -65,8 +73,14 @@ public class PlayerUI : MonoBehaviour
         multiplierAnimator.SetTrigger("Hide");
     }
 
-    public void Hide()
+    public void Toggle(bool enabled)
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(enabled);
+    }
+
+    public void ShowRound(int number)
+    {
+        roundText.text = "Round #" + number;
+        animator.SetTrigger("ShowRound");
     }
 }

@@ -9,6 +9,10 @@ public class LegsMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private List<Leg> legs;
 
+
+    [SerializeField] private AudioClip audioClip;
+
+    private AudioSource audioSource;
     private Animator animator;
 
     private float raycastOffset;
@@ -29,6 +33,7 @@ public class LegsMovement : MonoBehaviour
 
     void Awake()
     {
+        audioSource = transform.GetComponent<AudioSource>();
         animator = transform.GetComponent<Animator>();
     }
     
@@ -66,6 +71,7 @@ public class LegsMovement : MonoBehaviour
 
                 Vector3 _hintOffset = transform.forward * hintOffset;
                 leg.ChangeTargetPosition(hit.point, _hintOffset, secondsToMove);
+                audioSource.PlayOneShot(audioClip);
             }
         }
     }

@@ -21,11 +21,15 @@ public class Enemy : MonoBehaviour
             return guy;
         }
     }
-    
-    void Start()
+
+    void Awake()
     {
         combat = transform.GetComponent<EnemyCombat>();
         movement = transform.GetComponent<EnemyMovement>();
+    }
+    
+    void Start()
+    {
         guy.onKill += OnKill;
         guy.onTakeDamage += OnTakeDamage;
         
@@ -34,7 +38,6 @@ public class Enemy : MonoBehaviour
         
         healthBarUi.gameObject.SetActive(false);
         combat.enabled = false;
-        movement.enabled = false;
     }
 
     void OnTakeDamage(float currentHealth)
@@ -44,7 +47,6 @@ public class Enemy : MonoBehaviour
         {
             idle = false;
             combat.enabled = true;
-            movement.enabled = true;
             healthBarUi.gameObject.SetActive(true);
         }
         healthBarUi.SetHealth((int) currentHealth);
@@ -57,5 +59,10 @@ public class Enemy : MonoBehaviour
         healthBarUi.gameObject.SetActive(false);
         movement.enabled = false;
         combat.enabled = false;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        movement.SetTarget(target);
     }
 }

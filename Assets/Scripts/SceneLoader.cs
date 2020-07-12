@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
 
     public void GoToScene(string scene)
     {
+        Time.timeScale = 1;
         StartCoroutine(GoScene(scene));
     }
 

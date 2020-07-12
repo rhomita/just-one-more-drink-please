@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using Random = UnityEngine.Random;
 
 public class CombatArm : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class CombatArm : MonoBehaviour
     [SerializeField] private Transform targetWeaponIdle;
     [SerializeField] private Transform targetWeaponAttack;
     [SerializeField] private Transform weaponHolder;
-    
+    [SerializeField] private List<AudioClip> clips;
+
+    private AudioSource audioSource;
     private float springStrength = 1700f;
     private Rigidbody springRb;
     private SpringJoint springJoint;
@@ -35,6 +38,7 @@ public class CombatArm : MonoBehaviour
 
     void Awake()
     {
+        audioSource = transform.GetComponent<AudioSource>();
         springRb = target.GetComponent<Rigidbody>();
         IsAttacking = false;
     }
@@ -81,7 +85,9 @@ public class CombatArm : MonoBehaviour
 
         Vector3 idlePositon = HasWeapon ? targetWeaponIdle.localPosition : targetIdle.localPosition;
         Vector3 attackPosition = HasWeapon ? targetWeaponAttack.localPosition : targetAttack.localPosition;
-        
+     
+        int randomClip = Random.Range(0, clips.Count - 1);
+        audioSource.PlayOneShot(clips[randomClip]);
         StartCoroutine(AttackCoroutine(idlePositon, attackPosition));
     }
     

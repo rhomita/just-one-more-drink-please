@@ -5,7 +5,9 @@ using UnityEngine;
 public class Guy : MonoBehaviour
 {
     [SerializeField] private float initHealth = 100f;
+    [SerializeField] private AudioClip deathClip;
 
+    private AudioSource audioSource;
     private GuyRagdoll ragdoll;
     private float secondsToDestroy = 5f;
     
@@ -21,6 +23,7 @@ public class Guy : MonoBehaviour
     
     void Awake()
     {
+        audioSource = transform.GetComponent<AudioSource>();
         ragdoll = GetComponent<GuyRagdoll>();
         Health = initHealth;
         IsDead = false;
@@ -39,6 +42,7 @@ public class Guy : MonoBehaviour
     private void Kill()
     {
         if (IsDead) return;
+        audioSource.PlayOneShot(deathClip);
         IsDead = true;
         ragdoll.Activate();
         StartCoroutine(DestroyAfter(secondsToDestroy));

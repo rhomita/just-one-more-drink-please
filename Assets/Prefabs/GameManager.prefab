@@ -46,3 +46,5 @@ MonoBehaviour:
   player: {fileID: 0}
   playerGuy: {fileID: 0}
   cam: {fileID: 0}
+  lostUI: {fileID: 0}
+  pauseUI: {fileID: 0}

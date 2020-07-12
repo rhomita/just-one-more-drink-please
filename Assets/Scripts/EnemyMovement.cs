@@ -33,6 +33,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (playerGuy.IsDead) return;
 
+        if (!combat.enabled) return;
+        
         agent.SetDestination(player.position);
 
         if ((player.position - transform.position).magnitude < agent.stoppingDistance)
@@ -41,8 +43,6 @@ public class EnemyMovement : MonoBehaviour
             combat.Attack();
         }
     }
-
-    
     
     private void FaceTarget()
     {
@@ -50,5 +50,10 @@ public class EnemyMovement : MonoBehaviour
         direction.y = 0;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        agent.SetDestination(target.position);
     }
 }

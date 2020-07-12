@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float turnSpeed;
 
     [SerializeField] private LegsMovement legsMovement;
+
+    [SerializeField] private ParticleSystem runningParticlesSystem;
  
     private Transform cam;
     private CharacterController controller;
@@ -70,6 +72,15 @@ public class PlayerController : MonoBehaviour
         
         legsMovement.SetRunning(isRunning);
         controller.center = isRunning ? runningCenter : isCrouching ? crouchingCenter : Vector3.zero;
+
+        if (isRunning)
+        {
+            runningParticlesSystem.Play();
+        }
+        else
+        {
+            runningParticlesSystem.Stop();
+        }
         
         if (legsMovement.IsMoving)
         {
